@@ -4,14 +4,17 @@ import {RouterProvider, createBrowserRouter} from 'react-router-dom';
 import './index.css';
 import Posts,{loader as postsLoader} from './routes/Posts';
 import reportWebVitals from './reportWebVitals';
-import NewPost from './routes/NewPost';
+import NewPost, {action as newPostAction} from './routes/NewPost';
 import RootLayout from './routes/RootLayout';
+import PostDetails, {loader as postDetailsLoader} from './routes/PostDetails';
+
 const router=createBrowserRouter([
   {path: '/', element:<RootLayout/>, children: [
     {path: '/',element: <Posts/>,
     loader: postsLoader, 
     children: [
-      {path: '/create-post', element:<NewPost/>}
+      {path: '/create-post', element:<NewPost/>, action:newPostAction},
+      {path: '/:id', element :<PostDetails/>, loader: postDetailsLoader}
 
     ]},
     
