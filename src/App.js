@@ -1,14 +1,28 @@
+import { useState } from 'react';
+
 //import logo from './logo.svg';
-//import './App.css';
-import Post from './components/Post';
+import './App.css';
+import PostList from './components/PostList';
+import MainHeader from './components/MainHeader';
 function App() {
+  const [modalIsVisible, setModalIsVisible]=useState(false);
+  
+  function showModalHandler(){
+    setModalIsVisible(true);
+  }
+  function hideModalHandler(){
+    setModalIsVisible(false);
+}
   return (
+    <>
+    <MainHeader onCreatePost={showModalHandler}/>
     <main>
-      <Post/>
-      <Post/>
-      <Post/>
+      <PostList isPosting={modalIsVisible} 
+      onStopPosting={hideModalHandler}
+      />
+      
       </main>
-    
+    </>
   );
 }
 
